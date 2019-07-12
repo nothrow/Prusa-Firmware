@@ -3321,7 +3321,9 @@ static void _lcd_babystep(int axis, const char *msg)
 	if (lcd_draw_update)
 	{
 	    lcd_set_cursor(0, 1);
-		menu_draw_float13(msg, _md->babystepMemMM[axis]);
+      menu_draw_float13(msg, _md->babystepMemMM[axis]);
+      lcd_set_cursor(0, 2);
+      lcd_printf_P(_N("Current position: %6.2f "), current_position[Z_AXIS]);
 	}
 	if (LCD_CLICKED || menu_leaving)
 	{
@@ -3337,7 +3339,7 @@ static void _lcd_babystep(int axis, const char *msg)
 
 static void lcd_babystep_z()
 {
-	_lcd_babystep(Z_AXIS, (_i("Adjusting Z:")));////MSG_BABYSTEPPING_Z c=15 Beware: must include the ':' as its last character
+    _lcd_babystep(Z_AXIS, (_i("Adjusting Z:")));////MSG_BABYSTEPPING_Z c=15 Beware: must include the ':' as its last character
 }
 
 
